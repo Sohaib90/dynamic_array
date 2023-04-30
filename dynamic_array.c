@@ -1,15 +1,8 @@
 #include "dynamic_array.h"
 
-int* array;
+vec3_t* array;
 size_t ArrSize = 0;
 size_t capacity = 0;
-
-void* init_array(void* array, size_t size){
-    ArrSize = size;
-    array = malloc(ArrSize * sizeof(array));
-    if (array == NULL) {printf("array memory allocation failure"); return NULL;}
-    return array;
-}
 
 size_t array_length() {return ArrSize;}
 size_t array_occupied() {return capacity;}
@@ -17,18 +10,17 @@ void array_free(void* array) {free(array);}
 
 int main(void){
 
-array = init_array(array, 10);
-for (int i = 0; i < 30; i++){
-    array_push(array, i, i);
-    printf("%d\n", array[i]);
-}
+    init_array(array, 10);
+    for (int i = 0; i < 2048; i++){
+        vec3_t temp_vec = {i, i*2, i*3};
+        array_push(array, temp_vec, i);
+        printf("vec[%d]: (%d, %d, %d)\n", i, array[i].a, array[i].b, array[i].c);
+        // printf("The value is %d\n", array[i]);
+    }
 
-printf("The size of the array is %ld\n", array_length());
-printf("Occupied num of elements in array %ld\n", array_occupied());
+    printf("The size of the array is %ld\n", array_length());
+    printf("Occupied num of elements in array %ld\n", array_occupied());
 
-
-
-free(array);
-
-return 0;
+    free(array);
+    return 0;
 }
