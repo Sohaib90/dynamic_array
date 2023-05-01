@@ -3,37 +3,28 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
-
-#define array_push(array, value, index)                                  \
-    if (capacity == ArrSize){                                            \
-        ArrSize *= 2;                                                    \
-        array =                                                          \
-        realloc(array, ArrSize * sizeof(*(array)));                      \
-        if (realloc == NULL) {printf("Reallocation failed\n"); exit(1);} \
-    }                                                                    \
-    array[index] = value;                                                \
-    capacity++;                                                          \
     
-#define init_array(array, size)                                          \
-    if (array == NULL){                                                  \
-        ArrSize = size;                                                  \
-        array = malloc(ArrSize * sizeof(*(array)));                      \
-        if (array == NULL)                                               \
-            {printf("array memory allocation failure"); return NULL;}    \
-    }
 typedef struct 
 {
     int a, b, c;
 
 } vec3_t;
 
-extern vec3_t* array;
-extern size_t ArrSize;
-extern size_t capacity;
+typedef enum {
+    ARR_INT,
+    ARR_VEC3,
+    ARR_FLOAT,
+} DataType_t;
 
-size_t array_length();
-size_t array_occupied();
+typedef struct {
+    DataType_t type;
+    size_t size;
+    size_t occupied;
+    void* data;
+} array_t;
+
+array_t array_create(size_t size, DataType_t type);
+void array_push(array_t array, size_t index, DataType_t type, void* value);
 void array_free(void* array);
 
 
