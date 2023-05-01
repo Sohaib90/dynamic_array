@@ -24,8 +24,7 @@ typedef struct {
 } array_t;
 
 array_t array_create(size_t size, DataType_t type);
-void array_push(array_t array, size_t index, DataType_t type, void* value);
-void array_free(void* array);
-
+void array_push(array_t array, size_t index, void* value);
+void array_free(array_t* array);
 
 #endif
