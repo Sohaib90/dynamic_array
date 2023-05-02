@@ -15,7 +15,3 @@ jobs:
     - uses: actions/checkout@v3
     - name: compile
       run: gcc --std=c99 *.c -o main
-    - name: execute
-      run: ./maingithub actions for c
-    - name: clean
-      run: rm ./main
