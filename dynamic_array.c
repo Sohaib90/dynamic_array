@@ -14,14 +14,15 @@ size_t array_size(DataType_t type)
     return array_mem_alloc;
 }
 
-array_t* array_create(size_t size, DataType_t type){
+array_t array_create(size_t size, DataType_t type){
     
     size_t type_mem = array_size(type);
-    array_t* array; 
-    array->type = type;
-    array->size = size;
-    array->occupied = 0;
-    array->data = malloc(type_mem * size);
+    array_t array = {
+        .type = type, 
+        .size = size,
+        .occupied = 0,
+        .data = malloc(type_mem * size),
+    }; 
 
     return array;
 }
