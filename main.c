@@ -14,9 +14,9 @@ int main(void){
     array_t float_array = array_create(2, ARR_FLOAT);
 
     for (int i=0; i<30; i++){
-        vec3_t temp = {i, i+1, i+2};
+        vec3 temp = {i, i+1, i+2};
         array_push(&vec3_array, i, &temp);
-        printf("vec3_array[%d]: (%d, %d, %d) \n", i, temp.a, temp.b, temp.c);
+        printf("vec3_array[%d]: (%f, %f, %f) \n", i, temp.x, temp.y, temp.z);
     }
 
     for (int j=0; j<100; j++){

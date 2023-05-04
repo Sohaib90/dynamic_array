@@ -4,11 +4,15 @@ size_t array_size(DataType_t type)
 {
     size_t array_mem_alloc = 0;
     if (type == ARR_VEC3){
-        array_mem_alloc = sizeof(vec3_t);
+        array_mem_alloc = sizeof(vec3);
     } else if (type == ARR_INT){
         array_mem_alloc = sizeof(int);
     } else if (type == ARR_FLOAT){
         array_mem_alloc = sizeof(float);
+    } else if (type == ARR_VEC2){
+        array_mem_alloc = sizeof(vec2);
+    } else if (type == ARR_TRIANGLE){
+        array_mem_alloc = sizeof(triangle);
     }
 
     return array_mem_alloc;
@@ -36,14 +40,17 @@ void array_push(array_t* array, size_t index, void* value){
 
     // cast value to appropriate data type
     if (array->type == ARR_VEC3){
-        vec3_t* vec = (vec3_t *) value;
-        ((vec3_t*)array->data)[index] = *vec;
+        vec3* vec = (vec3 *) value;
+        ((vec3*)array->data)[index] = *vec;
     } else if (array->type == ARR_INT){
         int* intPtr = (int *) value;
         ((int*)array->data)[index] = *intPtr;
     } else if (array->type == ARR_FLOAT){
         float* val = (float *) value;
         ((float*)array->data)[index] = *val;
+    } else if (array->type == ARR_TRIANGLE){
+        triangle* t = (triangle*) value;
+        ((triangle*)array->data)[index] = *t;
     }
     array->occupied++;
 }

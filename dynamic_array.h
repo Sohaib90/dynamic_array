@@ -6,14 +6,26 @@
     
 typedef struct 
 {
-    int a, b, c;
+    float x, y, z;
 
-} vec3_t;
+} vec3;
+
+typedef struct 
+{
+    float x, y;
+} vec2;
+
+typedef struct 
+{
+    vec2 points[3];
+} triangle;
 
 typedef enum {
     ARR_INT,
     ARR_VEC3,
+    ARR_VEC2,
     ARR_FLOAT,
+    ARR_TRIANGLE,
 } DataType_t;
 
 typedef struct {
