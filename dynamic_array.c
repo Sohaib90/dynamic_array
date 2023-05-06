@@ -13,6 +13,8 @@ size_t array_size(DataType_t type)
         array_mem_alloc = sizeof(vec2);
     } else if (type == ARR_TRIANGLE){
         array_mem_alloc = sizeof(triangle);
+    } else if (type == ARR_FACE){
+        array_mem_alloc = sizeof(face);
     }
 
     return array_mem_alloc;
@@ -35,7 +37,7 @@ void array_push(array_t* array, size_t index, void* value){
     if (array->size == array->occupied){
         array->size *= 2;
         array->data = realloc(array->data, array->size * array_size(array->type));
-        if (array->data == NULL) {printf("array memory reallocation failure"); exit(1);}
+        if (array->data == NULL) {printf("ERROR: array memory reallocation failure for array type %d \n", array->type); exit(1);}
     }
 
     // cast value to appropriate data type
@@ -51,6 +53,9 @@ void array_push(array_t* array, size_t index, void* value){
     } else if (array->type == ARR_TRIANGLE){
         triangle* t = (triangle*) value;
         ((triangle*)array->data)[index] = *t;
+    } else if (array->type == ARR_FACE){
+        face* f = (face*) value;
+        ((face*)array->data)[index] = *f;
     }
     array->occupied++;
 }

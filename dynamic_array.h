@@ -20,12 +20,19 @@ typedef struct
     vec2 points[3];
 } triangle;
 
+typedef struct 
+{
+    int a, b, c;
+} face;
+
+
 typedef enum {
     ARR_INT,
     ARR_VEC3,
     ARR_VEC2,
     ARR_FLOAT,
     ARR_TRIANGLE,
+    ARR_FACE,
 } DataType_t;
 
 typedef struct {
